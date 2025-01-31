@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Allos - Airlines</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="form">Form</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/getPrens">Tabella</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+	<div class="container">
+	<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Cognome</th>
+      <th scope="col">Eta</th>
+      <th scope="col">Partenza</th>
+      <th scope="col">Destinazione</th>
+      <th scope="col">Annullamento</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="p : ${prenotazioni}">
+      <td th:text="${p.nome}"></td>
+      <td th:text="${p.cognome}"></td>
+      <td th:text="${p.eta}"></td>
+      <td th:text="${p.partenza}"></td>
+      <td th:text="${p.destinazione}"></td>
+      <td><a th:href="@{/deletePren(id=${p.id})}"><button class="btn btn-danger">Annulla</button></a></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>

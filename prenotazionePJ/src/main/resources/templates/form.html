@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Allos - Airlines</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="form">Form</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/getPrens">Tabella</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+	<div class="container">
+<form action="/upsertPren" method="post">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputEmail4">Nome</label>
+      <input type="text" class="form-control" id="inputEmail4" name="nome" required>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Cognome</label>
+      <input type="text" class="form-control" id="inputPassword4" name="cognome" required>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword5">Eta</label>
+      <input type="number" min="18" class="form-control" id="inputPassword5" name="eta" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress">Partenza</label>
+    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="partenza" required>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress2">Destinazione</label>
+    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="destinazione" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Prenota</button>
+</form>
+	</div>
+
+</body>
+</html>
