@@ -1,5 +1,7 @@
 package allos.prenotazionePJ.model;
 
+import java.util.Random;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,6 +23,9 @@ public class Prenotazione {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(length = 5, nullable = false, unique = true)
+	private String codicePrenotazione;
+	
 	@Column(length = 30, nullable = false, unique = false)
 	private String nome;
 	
@@ -35,7 +40,24 @@ public class Prenotazione {
 	
 	@Column(length = 150, nullable = false, unique = false)
 	private String destinazione;
-
-		
 	
+//	private Utente utente;
+//	
+//	private Volo volo;
+	
+//	public Prenotazione (Utente utente, Volo volo) {
+//		this.utente = utente;
+//		this.volo = volo;
+//	}
+	
+	public String generaCodicePren() {
+		String codici = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		StringBuilder str = new StringBuilder();
+		Random random = new Random();
+		for (int i = 0; i < 5; i++) {
+			str.append(codici.charAt(random.nextInt(codici.length())));
+		}
+		return str.toString();
+	}
+
 }
