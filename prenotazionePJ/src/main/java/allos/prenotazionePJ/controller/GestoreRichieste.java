@@ -23,7 +23,6 @@ public class GestoreRichieste {
 	
 	@PostMapping("/upsertPren")
 	public String upsertPrenotazione(Prenotazione pren) {
-		System.out.println(pren);
 		dao.upsertPrenotazione(pren);
 		return "home";
 	}
@@ -32,7 +31,7 @@ public class GestoreRichieste {
 	public String getPrenotazioni(Model model) {
 		List<Prenotazione> prenotazioni = dao.getPrenotazioni();
 		model.addAttribute("prenotazioni", prenotazioni);
-		return "tabella";
+		return "listPrens";
 	}
 	
 	@GetMapping("/deletePren")
@@ -57,14 +56,9 @@ public class GestoreRichieste {
 	
 	@PostMapping("/createPren")
 	public String setPrenotazione(Model model, Utente utente, @RequestParam int voloId) {
-		//creare una prenotazione e settare id volo
-		//trovare modo di recuperare il volo
 		Volo volo = dao.getVoloById(voloId);
-		System.out.println(volo);
-		System.out.println(utente);
 		model.addAttribute("volo", volo);
 		model.addAttribute("utente", utente);
-		dao.upsertUtente(utente);
 		return "recapPren";
 	}
 	
@@ -72,52 +66,31 @@ public class GestoreRichieste {
 	public String confirmPrenotazione(Model model, Utente utente, @RequestParam int voloId) {
 		System.out.println("sono in confirmPren");
 		Volo voloSelec = dao.getVoloById(voloId);
-		System.out.println(utente);
-		System.out.println(voloSelec);
-		Prenotazione pren = new Prenotazione();
-		pren.setNome(utente.getNome());
-		pren.setCognome(utente.getCognome());
-		pren.setEta(utente.getEta());
-		pren.setPartenza(voloSelec.getPartenza());
-		pren.setDestinazione(voloSelec.getDestinazione());
-		// richiamare metodo upsert che dovrà rimandare alla pagina di prenotazione effettuata
+		dao.upsertUtente(utente);
+		Prenotazione pren = new Prenotazione(utente, voloSelec);
 		dao.upsertPrenotazione(pren);
+		model.addAttribute("volo", voloSelec);
+		model.addAttribute("utente", utente);
 		model.addAttribute("pren", pren);
 		return "successPren";
 	}
 	
-	public String getPrenByCodice() {
-		// ragionare su come fare
-		// dovrei cercare tramite codice
-		// però quel codice deve avere come utente nome e cognome del form
-		// il return potrei farlo su tabella
-		
-		//utente ha le sue prenotazioni
-		/*
-		 * recuperare la sua lista
-		 * questa lista cercare la prenotazione con il codice che prendo nella query string
-		 * 
-		 */
-		return null;
-		
+	@GetMapping("/findPrenByCod")
+	public String getPrenByCodice(Model model, @RequestParam String nome, @RequestParam String cognome, @RequestParam String codicePrenotazione) {
+		Prenotazione pren = dao.getPrenotazioneByCodice(codicePrenotazione);
+		Utente user = pren.getUtente();
+		if(user.getNome().equalsIgnoreCase(nome) && user.getCognome().equalsIgnoreCase(cognome)) {
+			Volo volo = pren.getVolo();
+			model.addAttribute("pren", pren);
+			model.addAttribute("utente", user);
+			model.addAttribute("volo", volo);
+			return "tabella";
+		}
+		else {
+			String msg = "Spiacenti, non è stata trovata la prenotazione. Verificare la correttezza dei dati";
+			model.addAttribute("msg", msg);
+			return "tabella";
+		}
 	}
-	
-	// metodo funzionante ma non riesco a recuperare id volo
-	
-//	@PostMapping("/confirmPren")
-//	public String confirmPrenotazione(Utente utente, Volo volo, Prenotazione pren) {
-//		System.out.println("sono in confirmPren");
-//		Volo voloSelec = dao.getVoloById(voloId);
-//		System.out.println(utente);
-//		System.out.println(volo);
-//		//Prenotazione pren = new Prenotazione();
-//		pren.setNome(utente.getNome());
-//		pren.setCognome(utente.getCognome());
-//		pren.setEta(utente.getEta());
-//		pren.setPartenza(volo.getPartenza());
-//		pren.setDestinazione(volo.getDestinazione());
-//		dao.upsertPrenotazione(pren);
-//		return "home";
-//	}
 	
 }

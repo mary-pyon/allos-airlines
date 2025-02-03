@@ -23,21 +23,24 @@
         <a class="nav-link" href="home">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="form">Form</a>
+        <a class="nav-link" href="info">Info</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/getPrens">Tabella</a>
+        <a class="nav-link" href="/getPrens">Prenotazioni</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="gestPren.html">Modifica prenotazione</a>
+        <a class="nav-link" href="gestPren">Modifica prenotazione</a>
       </li>
     </ul>
   </div>
 </nav>
 	<div class="container">
+    <br><br>
+	<p th:text="${msg}"></p>
 	<table class="table table-hover">
   <thead>
     <tr>
+      <th scope="col">Codice prenotazione</th>
       <th scope="col">Nome</th>
       <th scope="col">Cognome</th>
       <th scope="col">Eta</th>
@@ -47,13 +50,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr th:each="p : ${prenotazioni}">
-      <td th:text="${p.nome}"></td>
-      <td th:text="${p.cognome}"></td>
-      <td th:text="${p.eta}"></td>
-      <td th:text="${p.partenza}"></td>
-      <td th:text="${p.destinazione}"></td>
-      <td><a th:href="@{/deletePren(id=${p.id})}"><button class="btn btn-warning">Annulla</button></a></td>
+    <tr>
+      <td th:text="${pren.codicePrenotazione}"></td>
+      <td th:text="${utente.nome}"></td>
+      <td th:text="${utente.cognome}"></td>
+      <td th:text="${utente.eta}"></td>
+      <td th:text="${volo.partenza}"></td>
+      <td th:text="${volo.destinazione}"></td>
+      <td><a th:href="@{/deletePren(id=${pren.id})}"><button class="btn btn-warning">Annulla</button></a></td>
     </tr>
   </tbody>
 </table>

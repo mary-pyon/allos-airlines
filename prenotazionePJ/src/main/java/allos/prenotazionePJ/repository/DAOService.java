@@ -45,11 +45,6 @@ public class DAOService implements IDAOService {
 		irp.deleteById(id);
 		return true;
 	}
-	
-	@Override
-	public List<Prenotazione> getPrenotazioniByUtente(int id) {
-		return irp.getListPrenByIdUtente(id);
-	}
 
 	@Override
 	public Prenotazione getPrenotazioneByCodice(String codice) {

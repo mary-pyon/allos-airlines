@@ -12,7 +12,6 @@ public interface IDAOService {
 	public boolean upsertPrenotazione(Prenotazione p);
 	public List<Prenotazione> getPrenotazioni();
 	public boolean deletePrenotazione(int id);
-	public List<Prenotazione> getPrenotazioniByUtente(int id);
 	public Prenotazione getPrenotazioneByCodice(String codice);
 	
 	// Volo

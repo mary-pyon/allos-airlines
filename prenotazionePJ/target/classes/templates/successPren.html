@@ -22,10 +22,10 @@
         <a class="nav-link" href="home">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="form">Form</a>
+        <a class="nav-link" href="info">Info</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/getPrens">Tabella</a>
+        <a class="nav-link" href="/getPrens">Prenotazioni</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="gestPren">Modifica prenotazione</a>
@@ -33,32 +33,35 @@
     </ul>
   </div>
 </nav>
+<br>
 <div class="container">
-    <h5>Prenotazione effettuata con successo!</h5>
+    <h3 class="text-center">Prenotazione effettuata con successo!</h3>
+    <br>
     <p>Conserva il tuo codice prenotazione per poter effettuare eventuali modifiche.</p>
     <p>Per modificare o annullare la tua prenotazione accedi alla sezione <a href="gestPren">Modifica prenotazione</a>.</p>
 </div>
+<br>
 <div class="container">
     <table class="table table-hover">
         <thead>
           <tr>
+            <th scope="col">Codice Prenotazione</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Cognome</th>
             <th scope="col">Partenza</th>
             <th scope="col">Destinazione</th>
-            <!-- sistemare la view mostrando le info sulla prenotazione effettuata
-            Nome, cognome eta utente
-            codice prenotazione
-            partenza e destinazione 
-            -->
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td th:text="${pren.partenza}"></td>
-            <td th:text="${pren.destinazione}"></td>
+            <td th:text="${pren.codicePrenotazione}"></td>
+            <td th:text="${utente.nome}"></td>
+            <td th:text="${utente.cognome}"></td>
+            <td th:text="${volo.partenza}"></td>
+            <td th:text="${volo.destinazione}"></td>
           </tr>
         </tbody>
-      </table>
-	
+    </table>
 </div>
 </body>
 </html>
