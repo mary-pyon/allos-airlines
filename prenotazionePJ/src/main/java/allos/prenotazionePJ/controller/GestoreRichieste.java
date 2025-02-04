@@ -21,24 +21,11 @@ public class GestoreRichieste {
 	IDAOService dao;
 	
 	
-	@PostMapping("/upsertPren")
-	public String upsertPrenotazione(Prenotazione pren) {
-		dao.upsertPrenotazione(pren);
-		return "home";
-	}
-
-	@GetMapping("/getPrens")
-	public String getPrenotazioni(Model model) {
-		List<Prenotazione> prenotazioni = dao.getPrenotazioni();
-		model.addAttribute("prenotazioni", prenotazioni);
-		return "listPrens";
-	}
-	
-	@GetMapping("/deletePren")
-	public String deletePrenotazione(@RequestParam int id) {
-		dao.deletePrenotazione(id);
-		return "home";
-	}
+//	@PostMapping("/upsertPren")
+//	public String upsertPrenotazione(Prenotazione pren) {
+//		dao.upsertPrenotazione(pren);
+//		return "home";
+//	}
 	
 	@GetMapping("/listVoli")
 	public String getVoli(Model model, @RequestParam String partenza, String destinazione) {
@@ -84,13 +71,26 @@ public class GestoreRichieste {
 			model.addAttribute("pren", pren);
 			model.addAttribute("utente", user);
 			model.addAttribute("volo", volo);
-			return "tabella";
+			return "prenotazione";
 		}
 		else {
 			String msg = "Spiacenti, non è stata trovata la prenotazione. Verificare la correttezza dei dati";
 			model.addAttribute("msg", msg);
-			return "tabella";
+			return "prenotazione";
 		}
 	}
+
+	@GetMapping("/getPrens")
+	public String getPrenotazioni(Model model) {
+		List<Prenotazione> prenotazioni = dao.getPrenotazioni();
+		model.addAttribute("prenotazioni", prenotazioni);
+		return "listPrens";
+	}
+	
+	@GetMapping("/deletePren")
+	public String deletePrenotazione(@RequestParam int id) {
+		dao.deletePrenotazione(id);
+		return "home";
+	}	
 	
 }
