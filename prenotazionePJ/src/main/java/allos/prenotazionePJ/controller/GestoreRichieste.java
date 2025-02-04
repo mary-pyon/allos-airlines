@@ -21,12 +21,6 @@ public class GestoreRichieste {
 	IDAOService dao;
 	
 	
-//	@PostMapping("/upsertPren")
-//	public String upsertPrenotazione(Prenotazione pren) {
-//		dao.upsertPrenotazione(pren);
-//		return "home";
-//	}
-	
 	@GetMapping("/listVoli")
 	public String getVoli(Model model, @RequestParam String partenza, String destinazione) {
 		List<Volo> voli = dao.getVoliByTratta(partenza, destinazione);
@@ -51,7 +45,6 @@ public class GestoreRichieste {
 	
 	@PostMapping("/confirmPren")
 	public String confirmPrenotazione(Model model, Utente utente, @RequestParam int voloId) {
-		System.out.println("sono in confirmPren");
 		Volo voloSelec = dao.getVoloById(voloId);
 		dao.upsertUtente(utente);
 		Prenotazione pren = new Prenotazione(utente, voloSelec);
@@ -88,9 +81,9 @@ public class GestoreRichieste {
 	}
 	
 	@GetMapping("/deletePren")
-	public String deletePrenotazione(@RequestParam int id) {
+	public String deletePrenotazione(Model model, @RequestParam int id) {
 		dao.deletePrenotazione(id);
-		return "home";
+		return getPrenotazioni(model);
 	}	
 	
 }

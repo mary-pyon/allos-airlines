@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Prenotazioni</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"><i class="bi bi-airplane-fill"></i></a>
+  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-airplane-fill" viewBox="0 0 16 16">
+  <path d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849"/>
+</svg>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="home">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="info">Info</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/getPrens">Prenotazioni</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="gestPren">Modifica prenotazione</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+	<div class="container">
+    <br><br>
+	<p th:text="${msg}"></p>
+	<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Codice prenotazione</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Cognome</th>
+      <th scope="col">Eta</th>
+      <th scope="col">Partenza</th>
+      <th scope="col">Destinazione</th>
+      <th scope="col">Annullamento</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td th:text="${pren.codicePrenotazione}"></td>
+      <td th:text="${utente.nome}"></td>
+      <td th:text="${utente.cognome}"></td>
+      <td th:text="${utente.eta}"></td>
+      <td th:text="${volo.partenza}"></td>
+      <td th:text="${volo.destinazione}"></td>
+      <td><a th:href="@{/deletePren(id=${pren.id})}"><button class="btn btn-warning">Annulla</button></a></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>

@@ -28,21 +28,6 @@ public class Prenotazione {
 	@Column(length = 5, nullable = false, unique = true)
 	private String codicePrenotazione;
 	
-//	@Column(length = 30, nullable = false, unique = false)
-//	private String nome;
-//	
-//	@Column(length = 50, nullable = false, unique = false)
-//	private String cognome;
-//	
-//	@Column(nullable = false)
-//	private int eta;
-//	
-//	@Column(length = 150, nullable = false, unique = false)
-//	private String partenza;
-//	
-//	@Column(length = 150, nullable = false, unique = false)
-//	private String destinazione;
-	
 	@ManyToOne
 	@JoinColumn(name="id_utente", referencedColumnName = "id")
 	private Utente utente;

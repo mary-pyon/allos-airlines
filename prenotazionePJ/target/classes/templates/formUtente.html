@@ -59,11 +59,15 @@
 <!-- fine navbar -->
 <nav class="navbar navbar-expand-md navbar-light bg-light">
     <div class="collapse navbar-collapse">
-        <p>Volo selezionato</p>
-        <p class="p-4">Da:</p>
-        <p th:text="${volo.partenza}"></p>
-        <p>A:</p>
-        <p th:text="${volo.destinazione}"></p>
+        <h6 class="nav nav-item" style="margin-right: 10px;">Volo selezionato</h6>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708"/>
+          <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708"/>
+        </svg>
+          <h6 class="nav nav-item p-4">Da:</h6>
+          <p class="nav nav-item" th:text="${volo.partenza}"></p>
+          <h6 class="nav nav-item p-4">A:</h6>
+          <p class="nav nav-item" th:text="${volo.destinazione}"></p>
     </div>
 </nav>
 <br>
